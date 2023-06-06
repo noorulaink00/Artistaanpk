@@ -1,0 +1,223 @@
+Product
+
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import FormInput from "./FormInput";
+import { firestore } from "./firebaseConfig";
+
+const ProductInfo = ({ sellerData }) => {
+  const history = useHistory();
+  const [productData, setProductData] = useState({
+    category: "",
+    // Add other product info fields here
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProductData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleNext = async () => {
+    try {
+      // Save the sellerData and productData to Firestore
+      const docRef = await firestore.collection("products").add({
+        ...sellerData,
+        ...productData
+      });
+      console.log("Document ID:", docRef.id);
+
+      history.push("/preview", { sellerData, productData });
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      // Handle error
+    }
+  };
+
+  return (
+    <form>
+      <FormInput
+        type="text"
+        name="category"
+        value={productData.category}
+        onChange={handleChange}
+        placeholder="Category"
+        required
+      />
+      {/* Add other product info inputs here */}
+      <button type="button" onClick={handleNext}>
+        Next
+      </button>
+    </form>
+  );
+};
+
+export default ProductInfo;
+
+
+
+preview
+import React from "react";
+import { useLocation, useHistory } from "react-router-dom";
+
+const Preview = () => {
+  const location = useLocation();
+  const history = useHistory();
+  const { sellerData, productData } = location.state;
+
+  const handleEdit = () => {
+    history.push("/sellerForm");
+  };
+
+  const handleSubmit = () => {
+    // Submit data to Firebase or perform any other desired actions
+  };
+
+  return (
+    <div>
+      <h1>Preview</h1>
+      <div>
+        <h2>Seller Information</h2>
+        <p>Name: {sellerData.name}</p>
+        <p>City: {sellerData.city}</p>
+        {/* Display other sellerData fields here */}
+      </div>
+      <div>
+        <h2>Product Information</h2>
+        <p>Category: {productData.category}</p>
+        {/* Display other productData fields here */}
+      </div>
+      <button type="button" onClick={handleEdit}>
+        Edit
+      </button>
+      <button type="button" onClick={handleSubmit}>
+        Submit
+      </button>
+    </div>
+  );
+};
+
+export default Preview;
+
+
+
+sellerData
+
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import FormInput from "./FormInput";
+
+const ProductInfo = ({ sellerData }) => {
+  const history = useHistory();
+  const [productData, setProductData] = useState({
+    category: "",
+    // Add other product info fields here
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProductData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleNext = () => {
+    // Save the sellerData and productData to Firebase
+    // You'll need to implement the Firebase integration logic here
+    // Example: firebase.firestore().collection("products").add({ ...sellerData, ...productData });
+
+    history.push("/preview", { sellerData, productData });
+  };
+
+  return (
+    <form>
+      <FormInput
+        type="text"
+        name="category"
+        value={productData.category}
+        onChange={handleChange}
+        placeholder="Category"
+        required
+      />
+      {/* Add other product info inputs here */}
+      <button type="button" onClick={handleNext}>
+        Next
+      </button>
+    </form>
+  );
+};
+
+export default ProductInfo;
+
+
+Seller form
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import FormInput from "./FormInput";
+
+const SellerForm = () => {
+  const history = useHistory();
+  const [sellerData, setSellerData] = useState({
+    name: "",
+    city: "",
+    area: "",
+    address: ""
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setSellerData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleNext = () => {
+    history.push("/productInfo", { sellerData });
+  };
+
+  return (
+    <form>
+      <FormInput
+        type="text"
+        name="name"
+        value={sellerData.name}
+        onChange={handleChange}
+        placeholder="Name"
+        required
+      />
+      <FormInput
+        type="text"
+        name="city"
+        value={sellerData.city}
+        onChange={handleChange}
+        placeholder="City"
+        required
+      />
+      <FormInput
+        type="text"
+        name="area"
+        value={sellerData.area}
+        onChange={handleChange}
+        placeholder="Area"
+        required
+      />
+      <FormInput
+        type="text"
+        name="address"
+        value={sellerData.address}
+        onChange={handleChange}
+        placeholder="Address"
+        required
+      />
+      <button type="button" onClick={handleNext}>
+        Next
+      </button>
+    </form>
+  );
+};
+
+export default SellerForm;
