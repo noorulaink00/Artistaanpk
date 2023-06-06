@@ -1,0 +1,13 @@
+
+
+Database link: https://artistaanpk-fd306-default-rtdb.firebaseio.com/
+Web Api Key : AIzaSyATaT2h8r3cg0xSHyNw1GHjGFFAv2OoPog
+
+
+
+
+Firebase tutorials
+
+https://www.youtube.com/watch?v=EtRCneCCqU4&list=PLB97yPrFwo5hrMS7symkj4IW4v3xa_kjZ
+https://www.youtube.com/watch?v=HAPv4qswwSM&list=RDCMUCM-4HE0R3iLxKB7qaq1bskw&start_radio=1
+https://www.youtube.com/watch?v=UFLvSp4Mh9k&list=PL4cUxeGkcC9itfjle0ji1xOZ2cjRGY_WB&index=2

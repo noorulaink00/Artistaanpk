@@ -1,0 +1,137 @@
+@import url("./css/root.css");
+
+@import url("./css/Collections.css");
+@import url("./css/Header.css");
+@import url("./css/Menu.css");
+@import url("./css/TrendingItems.css");
+@import url("./css/webkit.css");
+@import url("https://fonts.googleapis.com/css2?family=Babylonica&family=Montserrat:wght@300;400&family=Nunito+Sans:wght@200&family=Open+Sans:wght@300&family=Raleway:ital,wght@0,800;1,800&display=swap");
+
+:root {
+  /*  Colors */
+  --teal: #008080;
+  --white: white;
+  --onyx: hsla(0, 0%, 27%);
+  --black: #222;
+  --grey: hsla(0, 0%, 0%, 0.5);
+  --lightest-grey: rgb(229, 228, 226);
+  --light-pink: #fff3f4;
+  --blue-teal: #367588;
+  --light-green: #cce7d0;
+
+  /*  Border Radius*/
+  --border-radius-md: 10px;
+  --border-radius-sm: 5px;
+
+  /*  Transition */
+  --transition-ease: 0.2s ease;
+
+  --boxshadow: 0px 19px 60px rgb (0 0 0/ 8%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins, sans-serif";
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  width: 100%;
+  overflow-x: hidden;
+}
+.container2 {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.d_flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.f_flex {
+  display: flex;
+}
+.b_flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.c_flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.d_grid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+.capitalize {
+  text-transform: capitalize;
+}
+
+.RText {
+  text-align: right;
+}
+.border1 {
+  border: 1px solid var(--blue-teal);
+  display: flex;
+  justify-content: center;
+  margin: 40px 150px;
+  width: 100%;
+}
+
+.border {
+  height: 2px;
+  width: 50%;
+  background: var(--blue-teal);
+  border: none;
+  margin-bottom: 3rem;
+}
+
+.row button {
+  width: 40%;
+  margin: 40px 0px;
+  padding: 10px 40px;
+  font-size: 1.2rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-color: transparent;
+}
+
+.row button:hover {
+  background-color: #008080;
+  color: white;
+  border: white;
+}
+
+.tittle {
+  letter-spacing: 7px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.services-section {
+  background-color: var(--light-pink);
+  padding: 40px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

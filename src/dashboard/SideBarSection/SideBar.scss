@@ -1,0 +1,165 @@
+:root {
+  ---primary: hsl(94, 59%, 35%);
+  --hover: #bdf094;
+  --palegreen: hsl(96, 75%, 89%);
+  --white: rgb(255, 255, 255);
+  --black: hsl(0, 0%, 18%);
+  --textcolor: hsl(240, 1%, 48%);
+  --bgcolor: hsl(220, 10%, 94%);
+  --greyText: rgb(150, 149, 149);
+  --inputcolor: hsl(330, 12%, 97%);
+
+  --fontsize: 2.5rem;
+  --h1font: 1.5rem;
+  --h2font: 1.25rem;
+  --h3font: 1rem;
+  --normalfont: 0.938rem;
+  --smallfont: 0.813rem;
+  --smallestfont: 0.75rem;
+}
+
+.sidebar {
+  background: white;
+  box-shadow: 1px 0px 4px var(--greyText);
+  width: 20%;
+  max-width: 18%;
+  height: 100%;
+  gap: 3rem;
+  overflow: auto;
+
+  .logoDiv {
+    padding: 1.5rem 1.5rem 0;
+    cursor: pointer;
+
+    img {
+      max-width: 40px;
+      margin-right: 0.5rem;
+      background: var(--inputcolor);
+      border-radius: 2px;
+      padding: 0.2rem;
+    }
+
+    h2 {
+      font-size: var(--h2font);
+      color: var(---primary);
+    }
+  }
+
+  .menuDiv,
+  .settingDiv {
+    .divTitle {
+      font-size: var(--h3font);
+      color: var(--black);
+      padding: 0 2rem 1.5rem;
+    }
+
+    .menuLists {
+      .listItem {
+        padding: 0.2rem 2rem;
+        width: 100%;
+        position: relative;
+
+        &::before {
+          position: absolute;
+          content: " ";
+          height: 0%;
+          left: 0;
+          width: 5px;
+          bottom: 0;
+          border-top-right-radius: 100px;
+          border-bottom-right-radius: 10px;
+          background-color: var(---primary);
+        }
+
+        .menuLink {
+          color: var(--greyText);
+          font-weight: 500;
+          transition: 0;
+          .icon {
+            margin-right: 0.7rem;
+          }
+        }
+
+        &:hover .menuLink {
+          color: var(---primary);
+          transition: 0;
+        }
+
+        &:hover::before {
+          height: 100%;
+          transition: 0.3s ease;
+        }
+      }
+    }
+  }
+
+  .sideBarCard {
+    width: 100%;
+    padding: 1rem;
+    position: relative;
+    text-align: center;
+
+    .icon {
+      position: absolute;
+      background: var(--hover);
+      border: 10px solid var(--white);
+      font-size: 3rem;
+      border-radius: 50%;
+      top: -8px;
+      right: 50%;
+      transform: translate(50%);
+      z-index: 100;
+    }
+
+    .cardContent {
+      position: relative;
+      padding: 1rem;
+      background: var(--hover);
+      border-radius: 10px;
+      overflow: hidden;
+
+      h3 {
+        font-size: var(--h3font);
+        margin-top: 1rem;
+        padding: 1rem 0;
+        font-weight: 800;
+        color: var(--black);
+      }
+
+      p {
+        font-size: var(--normalfont);
+        color: var(--textcolor);
+        padding-bottom: 1rem;
+        font-weight: 500;
+      }
+
+      .btn {
+        position: relative;
+        color: var(--textcolor);
+        z-index: 1000;
+      }
+
+      .circle1,
+      .circle2 {
+        position: absolute;
+        background-color: var(--palegreen);
+        border-radius: 50%;
+        opacity: 1;
+      }
+
+      .circle1 {
+        height: 100px;
+        width: 100px;
+        top: -50px;
+        left: -50px;
+      }
+      .circle2 {
+        height: 150px;
+        width: 150px;
+        bottom: -80px;
+        right: -70px;
+        z-index: 1;
+      }
+    }
+  }
+}

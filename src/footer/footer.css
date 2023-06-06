@@ -1,0 +1,103 @@
+.footer {
+  height: 50vh;
+  background-color: var(--blue-teal);
+  display: flex;
+  justify-content: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  border-bottom: 0.2px solid white;
+}
+.footer div {
+  padding: 40px 60px;
+}
+.newsletter {
+  display: block;
+}
+.newsletter input[type="email"],
+.newsletter input[type="submit"] {
+  width: 100%;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 10px;
+  background-color: transparent;
+}
+.text:hover input[type="email"],
+.submit:hover input[type="submit"] {
+  border: 1px solid white;
+}
+
+.newsletter input[type="submit"] {
+  width: 50%;
+}
+
+.footer a,
+.newsletter ul li {
+  text-decoration: none;
+  color: black;
+  font-size: 1.1rem;
+}
+.footer ul li {
+  display: flex;
+}
+
+.footer h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.connect ul i {
+  padding: 0px 10px 0px 0px;
+}
+.connect-icon {
+  padding: 10px;
+  text-align: center;
+  background-color: #008080;
+  visibility: hidden;
+}
+.connect-icon ul li {
+  list-style: none;
+  display: inline;
+}
+
+.connect-icon ul li a {
+  padding: 10px 10px;
+  font-size: 1.1rem;
+  color: black;
+}
+.service ul a,
+.About ul a,
+.connect ul a,
+.newsletter ul li {
+  padding: 10px 0px;
+}
+
+.service ul a:hover,
+.About ul a:hover,
+.connect ul a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+.copyright {
+  text-align: center;
+  background-color: var(--blue-teal);
+  justify-content: center;
+  font-size: 1.1rem;
+  padding: 0px;
+  height: 20vh;
+}
+.copyright p {
+  padding-bottom: 10px;
+}
+.copyright ul li {
+  display: inline;
+}
+.copyright ul li a {
+  text-decoration: none;
+  color: black;
+  padding: 100px 40px 0px 0px;
+}
+.copyright ul li:hover a {
+  text-decoration: underline;
+}

@@ -1,0 +1,114 @@
+import React, { useState, useContext } from "react";
+import RegisterSellerForm from "./RegisterSellerForm";
+import { useNavigate } from "react-router-dom";
+import { Field, ErrorMessage } from "formik";
+import CheckBox from "../../../components/CheckBox/CheckBox";
+import * as Yup from "yup";
+import validationSchema from "./validationSchema.jsx"; // Import the Yup validation schema
+import { Formik, Form } from "formik";
+
+const RSF2 = ({ children }) => {
+  const [selectedCheckbox, setSelectedCheckbox] = useState(null);
+  const [isChecked, setIsChecked] = useState(false);
+  const navigate = useNavigate();
+
+  const handleCheckboxChange = (isChecked, id) => {
+    setIsChecked(isChecked);
+    if (isChecked) {
+      setSelectedCheckbox(id);
+    } else {
+      setSelectedCheckbox(null);
+    }
+  };
+
+  const isButtonEnabled = selectedCheckbox !== null && isChecked;
+
+  /*const handleNextClick = () => {
+  const formData = { selectedCheckbox };
+  updateFormState(formData);
+  navigate("/registersellerform3");
+  };*/
+
+  const img = "images/SellerForm/8.jpg";
+  return (
+    <div className="RSF2">
+      <RegisterSellerForm image={img}>
+        <div className="RSF2-content">
+          <h1>What brings you here ? </h1>
+          <p>
+            Can we know your level as a seller, so we know what more success
+            measures to bring for you.
+          </p>
+          <Formik
+            initialValues={{
+              sellerLevel: "", // Initial value for the sellerLevel field
+              // Other initial values...
+            }}
+            validationSchema={validationSchema} // Use the imported Yup validation schema
+          ></Formik>
+          <form>
+            <div className="form-group">
+              <label>
+                <Field
+                  type="checkbox"
+                  name="sellerlevel"
+                  checked={selectedCheckbox === "newSeller"}
+                  onChange={(e) =>
+                    handleCheckboxChange(e.target.checked, "newSeller")
+                  }
+                />
+                New seller
+              </label>
+
+              <label>
+                <Field
+                  type="checkbox"
+                  name="sellerlevel"
+                  checked={selectedCheckbox === "experiencedSeller"}
+                  onChange={(e) =>
+                    handleCheckboxChange(e.target.checked, "experiencedSeller")
+                  }
+                />
+                Experienced seller
+              </label>
+            </div>
+          </form>
+          {/*<div className="form-group">
+             
+              <CheckBox
+                id="newSeller"
+                name="sellerLevel"
+                label="New seller "
+                onChange={(isChecked) =>
+                  handleCheckboxChange(isChecked, "newSeller")
+                }
+              />
+              <CheckBox
+                id="experiencedSeller"
+                name="sellerLevel"
+                label="Experiencesd seller"
+                onChange={(isChecked) =>
+                  handleCheckboxChange(isChecked, "experiencedSeller")
+                }
+              />
+              </div>*/}
+
+          <div className="form-buttons">
+            {isButtonEnabled === true && [children]}
+          </div>
+        </div>
+      </RegisterSellerForm>
+    </div>
+  );
+};
+
+export default RSF2;
+/*<div className="form-buttons">
+            <button
+              type="button"
+              onClick={handleNextClick}
+              disabled={!isButtonEnabled}
+            >
+              Next
+            </button>
+          </div>*/

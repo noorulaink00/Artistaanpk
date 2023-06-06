@@ -1,0 +1,19 @@
+:root {
+}
+
+.CustomerDashboard {
+  height: 100vh;
+  display: flex;
+  font-family: "Courier New", Courier, monospace;
+  justify-content: center;
+  align-items: center;
+
+  .CustomerGlass {
+    display: grid;
+    height: 97%;
+    width: 97%;
+    border-radius: 2rem;
+    background: white;
+    overflow: hidden;
+  }
+}

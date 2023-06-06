@@ -1,0 +1,45 @@
+.Menu {
+  ul {
+    list-style: none;
+    width: 250px;
+
+    li {
+      a {
+        display: flex;
+        color: black;
+        padding: 10px 15px;
+        gap: 15px;
+        transition: all 0.5s;
+        font-size: 1.3rem;
+        text-decoration: none;
+
+        :hover {
+          background: transparent;
+        }
+      }
+
+      :hover {
+        background: var(--blue-teal);
+        color: white;
+      }
+    }
+  }
+}
+/*
+.Menu a {
+  margin-left: 3rem;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: black;
+}
+.Menu a .icon {
+  color: black;
+  margin-right: 10px;
+}
+
+.Menu a:hover {
+  text-decoration: none;
+}
+
+
+*/

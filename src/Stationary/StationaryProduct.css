@@ -1,0 +1,26 @@
+.productsPage {
+  overflow: hidden;
+}
+.product-page .list {
+  height: auto;
+}
+.product-page {
+  margin: 50px 0px 50px 50px;
+  width: 100%;
+}
+
+.product-page .products {
+  grid-template-columns: 17% 76%;
+}
+
+.product-page ::-webkit-scrollbar {
+  display: none;
+}
+
+.product-page .list {
+  grid-gap: 1rem 2.5rem;
+}
+
+.product-page .product {
+  width: 16rem;
+}

@@ -1,0 +1,37 @@
+.AdminSideBar {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-top: 2rem;
+  transition: all 300ms ease;
+  height: 100%;
+  width: 250px;
+  background: hsla(180°, 100%, 25.1%, 0.2);
+
+  .SideBar-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .SideBar-menu {
+    margin-top: 30px;
+    position: relative;
+
+    .li {
+      background-color: blue;
+
+      &::before {
+        position: absolute;
+        content: " ";
+        height: 0%;
+        left: 0;
+        width: 5px;
+        bottom: 0;
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 10px;
+        background-color: var(---primary);
+      }
+    }
+  }
+}

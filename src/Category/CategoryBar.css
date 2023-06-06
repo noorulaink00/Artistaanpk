@@ -1,0 +1,140 @@
+.category {
+  width: 100%;
+  height: 30vh;
+  padding: 20px 100px;
+  background-color: #fff3f4;
+  font-family: "Guardian-EgypTT", "Charter Bitstream", "Noto Serif Light",
+    "Droid Serif", Georgia, serif;
+}
+
+.cat-desc {
+  width: 20%;
+  height: 100%;
+  float: left;
+  padding: 20px 5px;
+}
+.cat-desc span {
+  letter-spacing: 2px;
+  margin: 20px 0px;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.cat-desc p {
+  text-align: justify;
+  padding: 10px 20px 0px 0px;
+  font-size: 0.9rem;
+}
+
+.cat-rounds {
+  width: 80%;
+  text-align: start;
+  display: flex;
+
+  align-items: center;
+  overflow: hidden;
+}
+.cat-round-col {
+  width: 120px;
+  height: 20vh;
+  min-width: 100px;
+  margin: 15px 0px;
+  overflow: hidden;
+  text-align: center;
+}
+.cat-round-col img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.cat-round-col a {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+.cat-round-col:hover a {
+  text-decoration: underline;
+}
+
+#stationary {
+  text-align: center;
+  margin: 0px 60px;
+}
+
+#stationary .stat-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#stationary .stat {
+  margin: 15px 15px;
+  flex-basis: 100%;
+  padding: 10px 12px;
+  min-width: 250px;
+  min-height: 250px;
+  overflow: hidden;
+  flex: 0 1 200px;
+  border-radius: 20px;
+  text-align: start;
+  position: relative;
+  border: 0.5px solid #cce7d0;
+  transition: 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.06);
+}
+#stationary .stat:hover {
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid #008080;
+}
+
+#stationary .stat img {
+  width: 100%;
+  height: 250px;
+  border-radius: 20px;
+}
+
+#stationary .stat .desc {
+  text-align: start;
+  padding: 10px 0px;
+}
+
+#stationary .stat .desc span {
+  color: #606063;
+  font-size: 13px;
+}
+
+#stationary .stat .desc h5 {
+  padding: 7px 0px;
+  color: #1a1a1a;
+  font-size: 16px;
+}
+
+#stationary .stat .desc i {
+  font-size: 12px;
+  color: #66b2b2;
+}
+
+#stationary .stat .desc h4 {
+  padding-top: 7px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#stationary .stat .cart {
+  width: 50px;
+  height: 50px;
+  line-height: 47px;
+  bottom: 50px;
+  right: 20px;
+  visibility: hidden;
+  background-color: white;
+}
+
+#stationary .stat .cart i {
+  font-size: 1.2rem;
+}
+
+#stationary .stat:hover .cart {
+  visibility: visible;
+}

@@ -1,0 +1,247 @@
+import React, { useEffect, useState, useContext } from "react";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import RegisterSellerForm from "./RegisterSellerForm";
+import FormInput from "../../../components/FormInput/FormInput";
+import { FormContext } from "../../../FormInfo/FormContext";
+
+const RSF4 = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const inputValue = location.state?.inputValues || {};
+  const [inputValues, setInputValues] = useState({
+    shopname: "",
+    city: "",
+    area: "",
+    address: "",
+    description: "",
+  });
+  const [errorMsg, setErrorMsg] = useState();
+  const [successMsg, setSuccessMsg] = useState();
+
+  const { formState, updateFormState } = useContext(FormContext);
+  useEffect(() => {
+    const storedFormState = JSON.parse(localStorage.getItem("formState"));
+    if (storedFormState) {
+      updateFormState(storedFormState);
+    }
+  }, [updateFormState]);
+  const image = "images/SellerForm/9.jpg";
+
+  const handleChange = (e) => {
+    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = () => {
+    let isValid = true;
+    let inputState = {};
+
+    // Validate inputs
+    inputs.forEach((input) => {
+      const value = inputValues[input.name];
+      if (input.required && (value === "" || value === null)) {
+        isValid = false;
+        setErrorMsg(`Please fill in the ${input.label}`);
+      } else if (input.pattern && !new RegExp(input.pattern).test(value)) {
+        isValid = false;
+        setErrorMsg(input.errorMessage);
+      } else {
+        inputState[input.name] = value; // Add the validated input value to inputState
+      }
+    });
+
+    if (isValid) {
+      // Update the form state with the input values
+      const formData = { ...inputValues, ...inputState };
+      updateFormState(formData);
+
+      navigate("/registersellerform5", { state: { inputValues: formData } });
+    } else {
+      // Disable the button or show an error message
+      setSuccessMsg("Please fill in all the required fields correctly.");
+    }
+  };
+
+  const inputs = [
+    {
+      id: 1,
+      name: "shopname",
+      type: "text",
+      label: "Name of Your Shop",
+      errorMessage:
+        "Your name should not include any special characters or numbers and should be 3-50 characters long",
+      pattern: "[A-Za-z _-]+",
+      minLength: "3",
+      maxLength: "50",
+      required: true,
+    },
+    {
+      id: 2,
+      name: "city",
+      label: "City your shop is located at",
+      type: "text",
+      minLength: "3",
+      maxLength: "20",
+      errorMessage:
+        "It should not include any special characters or numbers and should be 3-20 characters long",
+      pattern: "[A-Za-z _-]+",
+      required: true,
+    },
+    {
+      id: 3,
+      name: "area",
+      type: "text",
+      label: "Area of the city",
+      pattern: "[A-Za-z _-]+",
+      minLength: "3",
+      maxLength: "20",
+      errorMessage:
+        "It should not include any special characters or numbers and should be 3-20 characters long",
+      required: true,
+    },
+    {
+      id: 4,
+      name: "address",
+      type: "textarea",
+      label: "Complete Address",
+      pattern: "^[A-Za-z0-9 _.,-/]+$",
+      minLength: "10",
+      maxLength: "200",
+      errorMessage: "It can be 10-200 characters long",
+      required: true,
+      placeholder: "Write complete address of your shop or if online your home",
+    },
+    {
+      id: 5,
+      name: "description",
+      type: "textarea",
+      label: "Description",
+      pattern: "^[A-Za-z0-9 _.,-/+]{20,200}$",
+      minLength: "20",
+      maxLength: "200",
+      errorMessage: "It should be 20-200 characters long",
+      required: true,
+      placeholder: "Write a short description of your shop!",
+    },
+  ];
+
+  return (
+    <div className="RSF4">
+      <RegisterSellerForm image={image}>
+        <h1> Introduce us to your shop </h1>
+        <p>Help us get informed about where you are located.</p>
+        <hr />
+        {inputs.map((input) => (
+          <div className="input-form">
+            <label>{input.label} </label>
+            <FormInput
+              key={input.id}
+              {...input}
+              value={inputValues[input.name]}
+              onChange={handleChange}
+            />
+          </div>
+        ))}
+        <div className="form-buttons">
+          <button type="button" onClick={handleSubmit}>
+            Next
+          </button>
+        </div>
+      </RegisterSellerForm>
+    </div>
+  );
+};
+
+export default RSF4;
+
+
+
+
+
+
+
+
+import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import RegisterSellerForm from "./RegisterSellerForm";
+import validationSchema from "./validationSchema";
+import { useFormik } from "formik";
+import FormInput from "../../../components/FormInput/FormInput";
+const RSF4 = ({ setStep }) => {
+  const image = "images/SellerForm/9.jpg";
+
+  const [inputValues, setInputValues] = useState({
+    shopname: "",
+    city: "",
+    area: "",
+    address: "",
+    description: "",
+  });
+
+  const handleChange = (e) => {
+    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
+  };
+
+  const handleNextStep = () => {
+    const { vendorname, contact, cnic } = formik.values;
+
+    // Create an updated values object with additional properties
+    const updatedValues = {
+      ...formik.values,
+      vendorname: vendorname,
+      contact: contact,
+      cnic: cnic,
+    };
+
+    setStep(5);
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      shopname: "",
+      city: "",
+      area: "",
+      address: "",
+      description: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: () => {},
+  });
+  const handlePreviousStep = () => {
+    setStep(3);
+  };
+  return (
+    <div className="RSF4">
+      <RegisterSellerForm image={image}>
+        <h1>Introduce us to your shop</h1>
+        <p>Help us get informed about where you are located.</p>
+        <hr />
+
+        <form>
+          <FormInput
+            type="text"
+            name="shopname"
+            label="Name of Your Shop"
+            value={inputValues.shopname}
+            onChange={(e) =>
+              setInputValues({ ...inputValues, shopname: e.target.value })
+            }
+          />
+          {/* Add other FormInput components for remaining fields */}
+
+          <div className="form-buttons">
+            <button type="button" onClick={handleNextStep}>
+              Next
+            </button>
+            <button type="button" onClick={handlePreviousStep}>
+              Previous
+            </button>
+          </div>
+        </form>
+      </RegisterSellerForm>
+    </div>
+  );
+};
+
+export default RSF4;

@@ -1,0 +1,46 @@
+const addSeller = async (userid) => {
+  try {
+    // Check if the user exists
+    const userRef = doc(db, "users", userid);
+    const userSnapshot = await getDoc(userRef);
+
+    if (!userSnapshot.exists()) {
+      Swal.fire(`User with ID ${userid} does not exist.`);
+      return;
+    }
+
+    // Create "seller" collection inside the user's document
+    const sellerCollectionRef = collection(db, "users", userid, "seller");
+    await addDoc(sellerCollectionRef, {}); // Use addDoc() to create the seller document
+
+    // Get the newly created seller document ID
+    const sellerQuerySnapshot = await getDocs(sellerCollectionRef);
+    const sellerDocId = sellerQuerySnapshot.docs[0].id;
+
+    // Create "seller/products" collection
+    const productsCollectionRef = collection(
+      db,
+      "users",
+      userid,
+      "seller",
+      sellerDocId,
+      "products"
+    );
+    await addDoc(productsCollectionRef, {}); // Use addDoc() to create the products document
+
+    // Create "seller/orders" collection
+    const ordersCollectionRef = collection(
+      db,
+      "users",
+      userid,
+      "seller",
+      sellerDocId,
+      "orders"
+    );
+    await addDoc(ordersCollectionRef, {}); // Use addDoc() to create the orders document
+
+    Swal.fire(`Seller added in user with ID ${userid}`);
+  } catch (error) {
+    Swal.fire("Error adding seller:", error.message);
+  }
+};

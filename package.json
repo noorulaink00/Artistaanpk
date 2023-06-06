@@ -1,0 +1,76 @@
+{
+  "homepage": "http://noorulaink00.github.io/artistaanpk",
+  "name": "artistaan",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "5": "^0.0.1",
+    "@emotion/react": "^11.10.6",
+    "@emotion/style": "^0.8.0",
+    "@emotion/styled": "^11.10.6",
+    "@formkit/auto-animate": "^1.0.0-beta.6",
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.14",
+    "@react-md/icon": "^5.1.3",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "bootstrap": "^5.2.3",
+    "firebase": "^9.15.0",
+    "formik": "^2.2.9",
+    "framer-motion": "^10.11.6",
+    "get-google-fonts": "^1.2.2",
+    "react": "^18.2.0",
+    "react-admin": "^4.9.1",
+    "react-admin-lb4": "^1.0.3",
+    "react-bootstrap": "^2.7.4",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^4.7.1",
+    "react-icons-kit": "^2.0.0",
+    "react-router-dom": "^6.8.0",
+    "react-scripts": "^5.0.1",
+    "react-slick": "^0.29.0",
+    "react-stars": "^2.2.5",
+    "reactstrap": "^9.1.8",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^5.3.6",
+    "sweetalert2": "^11.7.5",
+    "swiper": "^9.1.0",
+    "uid": "^2.0.1",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.0.2"
+  },
+  "scripts": {
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "sass": "^1.59.3"
+  }
+}

@@ -1,0 +1,35 @@
+Carousel Website
+https://www.youtube.com/watch?v=P5VnLiGUmtY&t=4s
+
+https://www.youtube.com/watch?v=K3L8J0DbuT8&t=1376s
+https://www.youtube.com/watch?v=eu0rExO_C3A
+https://www.youtube.com/watch?v=kmU7uX3ZHJc
+
+
+Carousel
+
+
+
+Login System 
+https://www.youtube.com/watch?v=T1wbLNvQImk
+
+
+Add Products
+https://www.youtube.com/watch?v=vzXuty6l6ks&list=PLW9nKlZ_FyqjbMrN-t__u-oeH6iMy0SMS&index=4
+https://www.youtube.com/watch?v=5Yp4fNbIKps
+https://www.youtube.com/watch?v=rNQUz2oGaE4&t=99s
+https://www.youtube.com/watch?v=azdwN_4IDKA
+
+
+https://www.youtube.com/watch?v=R_TryKob3kg&t=7721s
+
+
+https://www.youtube.com/watch?v=doR0xA3q0MA
+https://www.youtube.com/watch?v=FJ10zicqhzM
+https://www.youtube.com/watch?v=1rc2zYqexLI
+
+
+
+
+
+ "react-yup": "^1.24.1",

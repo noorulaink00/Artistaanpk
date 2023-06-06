@@ -1,0 +1,16 @@
+
+multi vendor mern: 
+https://www.youtube.com/watch?v=XxnUSZOgMLY
+
+https://www.youtube.com/watch?v=5ZodHXPAJCQ
+https://www.youtube.com/watch?v=LfI7H8zZSpg
+
+for cart:
+https://www.youtube.com/watch?v=fi0nQc25xAw
+
+ecommerce like amazon
+https://www.youtube.com/watch?v=BqiepBS4-Gg&t=3995s
+
+
+Git site:
+https://github.com/Rizwan17/ecommerce-admin-app

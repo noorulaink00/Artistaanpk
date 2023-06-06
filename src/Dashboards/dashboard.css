@@ -1,0 +1,27 @@
+.Dashboard {
+  height: 100vh;
+  display: flex;
+  font-family: "Courier New", Courier, monospace;
+  justify-content: center;
+  align-items: center;
+}
+.teal {
+  background: var(--blue-teal);
+}
+.pink {
+  background: linear-gradient(
+    106.37deg,
+    #ffe1bc 29.63%,
+    #ffcfd1 51.55%,
+    #f3c6f1 90.85%
+  );
+}
+.Glass {
+  display: grid;
+  height: 97%;
+  width: 97%;
+  border-radius: 2rem;
+  background-color: white;
+  overflow: hidden;
+  grid-template-columns: 250px auto;
+}

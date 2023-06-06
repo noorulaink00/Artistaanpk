@@ -1,0 +1,13 @@
+.filter-card {
+  background-color: var(--light-green);
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+
+.filter-title {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--blue-teal);
+  margin-bottom: 20px;
+}

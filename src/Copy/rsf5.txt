@@ -1,0 +1,255 @@
+import React, { useEffect, useState, useContext } from "react";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import RegisterSellerForm from "./RegisterSellerForm";
+import { FormContext } from "../../../FormInfo/FormContext";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useParams } from "react-router-dom";
+const RSF5 = () => {
+  const location = useLocation();
+  const inputValue = location.state?.inputValues || {};
+  const navigate = useNavigate();
+  const { id } = useParams();
+  useEffect(() => {
+    /*if (Object.keys(inputValue).length > 0) {
+      alert(JSON.stringify(inputValue)); // Display input values in an alert
+    }*/
+  }, [inputValue]);
+
+  const products = [
+    { id: 1, name: "Product 1", image: "images/SellerFOrm/2.jpg" },
+    { id: 2, name: "Product 2", image: "images/SellerFOrm/2.jpg" },
+    { id: 3, name: "Product 3", image: "images/SellerFOrm/2.jpg" },
+    { id: 4, name: "Product 3", image: "images/SellerFOrm/2.jpg" },
+    { id: 5, name: "Product 3", image: "images/SellerFOrm/2.jpg" },
+    { id: 6, name: "Product 3", image: "images/SellerFOrm/2.jpg" },
+    { id: 7, name: "Product 3", image: "images/SellerFOrm/2.jpg" },
+    { id: 8, name: "Product 3", image: "images/SellerFOrm/2.jpg" },
+    { id: 9, name: "Product 3", image: "images/SellerFOrm/2.jpg" },
+
+    // Add more products as needed
+  ];
+
+  const [selectedProducts, setSelectedProducts] = useState([]);
+
+  const handleCheckboxChange = (isChecked, productId) => {
+    if (isChecked) {
+      setSelectedProducts([...selectedProducts, productId]);
+    } else {
+      setSelectedProducts(selectedProducts.filter((id) => id !== productId));
+    }
+  };
+
+  const { formState, updateFormState } = useContext(FormContext);
+  useEffect(() => {
+    const storedFormState = JSON.parse(localStorage.getItem("formState"));
+    if (storedFormState) {
+      updateFormState(storedFormState);
+    }
+  }, [updateFormState]);
+
+  const handleSubmit = () => {
+    // Update the formContext with the selectedProducts
+    updateFormState({ selectedProducts });
+
+    // Navigate to the preview page and pass the selectedProducts as state data
+    navigate("/registersellerPreview", { state: { selectedProducts } });
+  };
+
+  const image =
+    "https://static.thehoneycombers.com/wp-content/uploads/sites/2/2019/11/craft-stores-shops-singapore.png";
+  return (
+    <div>
+      <div className="RSF5">
+        <RegisterSellerForm image={image}>
+          <h2 className="text-center">
+            {" "}
+            What Categories would you like to sell on your shop?
+          </h2>
+          <p>ID: {id}</p>
+          <p>
+            Choose as many categories that you would like to sell so we know
+            with what are you making an impact on our site.These are
+            subcategories so select as many as you want to sell
+          </p>
+
+          <hr />
+          <Container className="my-5 mx-auto text-center">
+            <Row className="mb-4 ">
+              {products.map((product) => (
+                <Col xs={6} md={4} lg={5} xl={5} key={product.id}>
+                  {" "}
+                  {/* Update column sizes */}
+                  <Card
+                    className={`product-card ${
+                      selectedProducts.includes(product.id) ? "selected" : ""
+                    }`}
+                    onClick={() =>
+                      handleCheckboxChange(
+                        !selectedProducts.includes(product.id),
+                        product.id
+                      )
+                    }
+                  >
+                    <Card.Img
+                      className="product-image"
+                      variant="top"
+                      src={product.image}
+                    />
+                    <Card.Body>
+                      <Card.Title>{product.name}</Card.Title>
+
+                      <input
+                        type="checkbox"
+                        checked={selectedProducts.includes(product.id)}
+                        onChange={() => {}}
+                        className="product-checkbox"
+                      />
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </Container>
+          <div className="form-buttons">
+            <button type="button" onClick={handleSubmit}>
+              Next
+            </button>
+          </div>
+        </RegisterSellerForm>
+      </div>
+    </div>
+  );
+};
+
+export default RSF5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import RegisterSellerForm from "./RegisterSellerForm";
+import validationSchema from "./validationSchema";
+
+const RSF5 = ({ setStep }) => {
+  const image =
+    "https://static.thehoneycombers.com/wp-content/uploads/sites/2/2019/11/craft-stores-shops-singapore.png";
+  const [selectedProducts, setSelectedProducts] = useState([]);
+
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const handleSubmit = (values) => {
+    const updatedValues = {
+      ...values,
+      selectedProducts: selectedProducts,
+    };
+
+    validationSchema
+      .validate(updatedValues, { abortEarly: false })
+      .then(() => {
+        // Validation successful
+        console.log("Validation passed:", updatedValues);
+        setStep(6); // Move to the next step (Step 6)
+      })
+      .catch((validationErrors) => {
+        // Validation failed
+        console.log("Validation errors:", validationErrors);
+        // Handle validation errors here, if needed
+      });
+  };
+
+  const products = [
+    { id: 1, name: "Product 1", image: "images/SellerFOrm/2.jpg" },
+    { id: 2, name: "Product 2", image: "images/SellerFOrm/2.jpg" },
+    { id: 3, name: "Product 3", image: "images/SellerFOrm/2.jpg" },
+    // Add more products as needed
+  ];
+
+  const handleCheckboxChange = (isChecked, productId) => {
+    if (isChecked) {
+      setSelectedProducts([...selectedProducts, productId]);
+    } else {
+      setSelectedProducts(selectedProducts.filter((id) => id !== productId));
+    }
+  };
+
+  const isButtonEnabled = selectedProducts.length > 0;
+
+  return (
+    <div className="RSF5">
+      <RegisterSellerForm image={image}>
+        <h2 className="text-center">
+          What Categories would you like to sell on your shop?
+        </h2>
+        <p>ID: {id}</p>
+        <p>
+          Choose as many categories that you would like to sell so we know with
+          what are you making an impact on our site. These are subcategories so
+          select as many as you want to sell.
+        </p>
+        <hr />
+        <Formik
+          initialValues={{ selectedProducts: [] }}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <div>
+                {products.map((product) => (
+                  <div className="product-card" key={product.id}>
+                    <div className="product-image">
+                      <img src={product.image} alt={product.name} />
+                    </div>
+                    <div className="product-details">
+                      <label>
+                        <Field
+                          type="checkbox"
+                          name="selectedProducts"
+                          value={product.name}
+                          checked={selectedProducts.includes(product.name)}
+                          onChange={(e) =>
+                            handleCheckboxChange(e.target.checked, product.name)
+                          }
+                        />
+                        {product.name}
+                      </label>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="form-buttons">
+                <button type="submit" disabled={!isButtonEnabled}>
+                  Next
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </RegisterSellerForm>
+    </div>
+  );
+};
+
+export default RSF5;

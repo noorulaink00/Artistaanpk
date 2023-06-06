@@ -1,0 +1,235 @@
+.seller-page {
+  display: flex;
+  height: 90vh;
+}
+.logo-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8vh; /* Adjust the height as needed */
+}
+
+.logo {
+  font-size: 24px; /* Adjust the font size as needed */
+}
+
+.text-left {
+  text-align: left;
+}
+.text-centered {
+  text-align: center;
+}
+
+.welcome-text {
+  padding: 50px;
+  flex: 2;
+
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  overflow: hidden;
+}
+.scrollable-text {
+  overflow: auto;
+  max-height: 150vh; /* Adjust the maximum height as needed */
+}
+.welcome-image {
+  flex: 1.2;
+
+  position: relative; /* Position the overlay relative to this container */
+}
+
+.welcome-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  /* Reduce font size for screens smaller than md */
+  .welcome-page {
+    height: 50vh;
+  }
+  .welcome-text {
+    font-size: 1.5rem;
+  }
+  .welcome-image {
+    display: none;
+  }
+}
+
+/*    Register Seller Form Page 1*/
+
+.RSF1 .welcome-text {
+  background-color: #e6e2d9;
+}
+
+.RSF1-content h1 {
+  color: #606e57;
+}
+.RSF4 h1 {
+  color: #2d486d;
+}
+.RSF2 p,
+.RSF1 p {
+  font-size: 1.5rem;
+}
+.RSF3 p,
+.RSF4 p,
+.RSF5 p {
+  font-size: 1.2rem;
+}
+
+.RSF1 button,
+.RSF2 button,
+.RSF3 button,
+.RSF4 button,
+.RSF5 button {
+  background-color: transparent;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 1.5rem;
+  border: 0.5px solid #606e57;
+  outline: none;
+}
+.RSF2 button,
+.RSF3 button {
+  background-color: #76103d;
+}
+.RSF4 button {
+  background-color: #2d486d;
+}
+.RSF5 button {
+  background-color: #363250;
+  color: white;
+}
+
+.RSF1 button:hover,
+.RSF4 button:hover,
+.RSF3 button:hover,
+.RSF5 button:hover {
+  background-color: transparent;
+  color: black;
+}
+.RSF1 svg {
+  padding: 0px 0px 0px 20px;
+}
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+.form-buttons button {
+  margin-left: auto;
+  margin-right: 50px;
+  width: 150px;
+
+  border: none;
+  color: white;
+}
+
+.RSF2 .welcome-text {
+  background-color: #fefaf0;
+}
+
+.RSF2 .form-group label,
+.RSF3 label,
+.RSF4 label {
+  font-size: 1.5rem;
+  padding-left: 10px;
+}
+.RSF3 input,
+.RSF4 input {
+  background-color: transparent;
+  width: 50%;
+  border: 1px solid white;
+}
+.RSF4 input {
+  border: 1px solid #2d486d;
+}
+
+.RSF3 .welcome-text {
+  background-color: #c8bba7;
+}
+.RSF3 ::-webkit-scrollbar-thumb,
+.RSF4 ::-webkit-scrollbar-thumb,
+.RSF5 ::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+.RSF4 .welcome-text {
+  background-color: #dbe4e6;
+}
+.RSF5 .welcome-text {
+  background-color: #d4c0ae;
+}
+.RSF5 h2 {
+  color: #363250;
+}
+
+.RSF5 .product-selection {
+  display: flex;
+}
+.RSF5 .card:checked {
+  background-color: yellow;
+}
+
+.RSF5 .card {
+  width: 18rem;
+  margin-right: 10px;
+}
+
+.product-card:last-child {
+  margin-right: 0; /* Remove margin for the last card in each row */
+}
+.product-card img {
+  width: 100%;
+  height: 170px;
+}
+
+.selected {
+  border: 2px solid #000;
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: red;
+}
+
+/* CSS */
+.form-group {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+button {
+  margin-right: 10px;
+}
+
+.button-group button {
+  margin: 10px 10px 0px 0px;
+}
+.form-group input {
+  font-size: 1.2rem;
+  padding: 10px;
+}
+.data h4 {
+  color: #26323b;
+  text-decoration: underline;
+  font-size: 1.2rem;
+}
+.data-sub {
+  display: flex;
+}
+.data-sub h4 {
+  flex: 1;
+}
+.data-sub p {
+  flex: 1;
+}

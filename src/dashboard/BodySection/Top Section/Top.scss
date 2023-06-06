@@ -1,0 +1,65 @@
+:root {
+  ---primary: hsl(94, 59%, 35%);
+  --hover: #bdf094;
+  --palegreen: hsl(96, 75%, 89%);
+  --white: rgb(255, 255, 255);
+  --black: hsl(0, 0%, 18%);
+  --textcolor: hsl(240, 1%, 48%);
+  --bgcolor: hsl(220, 10%, 94%);
+  --greyText: rgb(150, 149, 149);
+  --inputcolor: hsl(330, 12%, 97%);
+
+  --fontsize: 2.5rem;
+  --h1font: 1.5rem;
+  --h2font: 1.25rem;
+  --h3font: 1rem;
+  --normalfont: 0.938rem;
+  --smallfont: 0.813rem;
+  --smallestfont: 0.75rem;
+}
+
+.topSection {
+  .headerSection {
+    justify-content: space-between;
+
+    .title {
+      h1 {
+        font-size: var(--h1font);
+        color: var(--black);
+        font-weight: 700;
+      }
+
+      p {
+        font-size: var(--normalfont);
+        color: var(--textcolor);
+        font-weight: 500;
+      }
+    }
+
+    .searchBar {
+      padding: 1rem 2rem;
+      background: var(--white);
+      border-radius: 5px;
+      gap: 1rem;
+      box-shadow: 0 2px 4px var(--inputcolor);
+
+      input {
+        border: none;
+        outline: none;
+        background: none;
+      }
+
+      .icon {
+        color: var(--textcolor);
+
+        &:hover {
+          color: var(--primary);
+        }
+      }
+    }
+
+    .adminDiv {
+      color: purple;
+    }
+  }
+}

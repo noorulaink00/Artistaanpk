@@ -1,0 +1,122 @@
+import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { db } from "../Firebase/firebase";
+// Initialize Firebase
+// Replace with your Firebase configuration
+
+// Define the form validation schema using Yup
+const validationSchema = Yup.object().shape({
+  firstName: Yup.string().required("First Name is required"),
+  lastName: Yup.string().required("Last Name is required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
+  phone: Yup.string().required("Phone is required"),
+  address: Yup.string().required("Address is required"),
+});
+
+const MultiStepForm = () => {
+  const [step, setStep] = useState(1);
+
+  const handleSubmit = (values) => {
+    // Save form data to Firestore
+    db.collection("formData")
+      .add(values)
+      .then(() => {
+        console.log("Form data submitted successfully!");
+        // Reset form and navigate to the next step
+        setStep(1);
+      })
+      .catch((error) => {
+        console.error("Error submitting form:", error);
+      });
+  };
+
+  const renderForm = (formik) => {
+    switch (step) {
+      case 1:
+        return (
+          <>
+            <h2>Step 1: Personal Information</h2>
+            <div>
+              <label htmlFor="firstName">First Name:</label>
+              <Field type="text" id="firstName" name="firstName" />
+              <ErrorMessage name="firstName" component="div" />
+            </div>
+            <div>
+              <label htmlFor="lastName">Last Name:</label>
+              <Field type="text" id="lastName" name="lastName" />
+              <ErrorMessage name="lastName" component="div" />
+            </div>
+            <div>
+              <label htmlFor="email">Email:</label>
+              <Field type="email" id="email" name="email" />
+              <ErrorMessage name="email" component="div" />
+            </div>
+            <button type="button" onClick={() => setStep(2)}>
+              Next
+            </button>
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <h2>Step 2: Additional Information</h2>
+            <div>
+              <label htmlFor="phone">Phone:</label>
+              <Field type="text" id="phone" name="phone" />
+              <ErrorMessage name="phone" component="div" />
+            </div>
+            <div>
+              <label htmlFor="address">Address:</label>
+              <Field as="textarea" id="address" name="address" />
+              <ErrorMessage name="address" component="div" />
+            </div>
+            <button type="button" onClick={() => setStep(1)}>
+              Previous
+            </button>
+            <button type="button" onClick={() => setStep(3)}>
+              Next
+            </button>
+          </>
+        );
+      case 3:
+        return (
+          <>
+            <h2>Step 3: Review</h2>
+            <p>First Name: {formik.values.firstName}</p>
+            <p>Last Name: {formik.values.lastName}</p>
+            <p>Email: {formik.values.email}</p>
+            <p>Phone: {formik.values.phone}</p>
+            <p>Address: {formik.values.address}</p>
+            <button type="button" onClick={() => setStep(2)}>
+              Previous
+            </button>
+            <button type="submit">Submit</button>
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div>
+      <h1>Multi-Step Form</h1>
+      <Formik
+        initialValues={{
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          address: "",
+        }}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {(formik) => <Form>{renderForm(formik)}</Form>}
+      </Formik>
+    </div>
+  );
+};
+
+export default MultiStepForm;

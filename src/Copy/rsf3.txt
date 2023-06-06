@@ -1,0 +1,267 @@
+import React, { useState, useContext } from "react";
+import RegisterSellerForm from "./RegisterSellerForm";
+import { useNavigate } from "react-router-dom";
+
+import { useLocation } from "react-router-dom";
+
+import FormInput from "../../../components/FormInput/FormInput";
+import { FormContext } from "../../../FormInfo/FormContext";
+const RSF3 = () => {
+  const location = useLocation();
+  const img3 =
+    "https://prod.web.freshenv.com/blog/wp-content/uploads/2016/08/Sites-to-sell-artwork.jpg";
+
+  const image = "images/SellerForm/7.jpeg";
+  const [inputValues, setInputValues] = useState({
+    vendorname: "",
+    contact: "",
+    cnic: "",
+  });
+
+  const navigate = useNavigate();
+  const [errorMsg, setErrorMsg] = useState();
+  const [successMsg, setSuccessMsg] = useState();
+
+  const handleNextClick = () => {
+    navigate("/registersellerform4");
+  };
+
+  const isButtonEnabled = Object.values(inputValues).every(
+    (value) => value !== ""
+  );
+  const { formState, updateFormState } = useContext(FormContext);
+
+  const handleSubmit = () => {
+    let isValid = true;
+    let inputState = {};
+
+    // Validate inputs
+    inputs.forEach((input) => {
+      const value = inputValues[input.name];
+      if (input.required && (value === "" || value === null)) {
+        isValid = false;
+        setErrorMsg(`Please fill in the ${input.label}`);
+      } else if (input.pattern && !new RegExp(input.pattern).test(value)) {
+        isValid = false;
+        setErrorMsg(input.errorMessage);
+      } else {
+        inputState[input.name] = value; // Add the validated input value to inputState
+      }
+    });
+
+    if (isValid) {
+      // Move to next page and pass the input state
+      navigate("/registersellerform4", { state: { inputValues: inputState } });
+    } else {
+      // Show an error message or disable the button
+      setSuccessMsg(null);
+    }
+  };
+
+  const inputs = [
+    {
+      id: 1,
+      name: "vendorname",
+      type: "text",
+      label: "Name of the Owner",
+      errorMessage:
+        "Your name should not include any special characters or numbers and should be 3-20 characters long",
+      pattern: "^[A-Za-z_ ]{3,20}$",
+      required: true,
+    },
+    {
+      id: 2,
+      name: "contact",
+
+      label: "Contact Number",
+      type: "text",
+      pattern: "03[0-9]{9}",
+      maxLength: "11",
+      errorMessage: "It should be in a valid format 03_________",
+
+      required: true,
+    },
+    {
+      id: 3,
+      name: "cnic",
+      type: "text",
+      placeholder: "-XXX-XXXXXXX-X",
+      label: "National Identity Number (CNIC)",
+      pattern: "[0-9]{5}-[0-9]{7}-[0-9]{1}",
+      maxLength: "15",
+      errorMessage: "It should be in the format _____-_______-_",
+      required: true,
+    },
+  ];
+
+  const handleChange = (e) => {
+    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
+  };
+  return (
+    <div className="RSF3">
+      <RegisterSellerForm image={image}>
+        <h2> Looking forward to know a bit about you ! </h2>
+        <p>
+          Hope we aren't bothering you asking few questions related to you.This
+          will help us contact you and approve your identity.
+        </p>
+        <hr />
+
+        {inputs.map((input) => (
+          <div className="input-form">
+            <label>{input.label} </label>
+            <FormInput
+              key={input.id}
+              {...input}
+              value={inputValues[input.name]}
+              onChange={handleChange}
+            />
+          </div>
+        ))}
+
+        <div className="form-buttons">
+          <button type="button" onClick={handleSubmit}>
+            Next
+          </button>
+        </div>
+      </RegisterSellerForm>
+    </div>
+  );
+};
+
+export default RSF3;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// option 2
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import RegisterSellerForm from "./RegisterSellerForm";
+import FormInput from "../../../components/FormInput/FormInput";
+
+const RSF3 = () => {
+  const image = "images/SellerForm/7.jpeg";
+  const [inputValues, setInputValues] = useState({
+    vendorname: "",
+    contact: "",
+    cnic: "",
+  });
+
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const step3Schema = Yup.object().shape({
+    vendorname: Yup.string()
+      .matches(
+        /^[A-Za-z_ ]{3,20}$/,
+        "Your name should be 3-20 characters long and should not include special characters or numbers"
+      )
+      .required("Name of the Owner is required"),
+    contact: Yup.string()
+      .matches(
+        /^03[0-9]{9}$/,
+        "Contact Number should be in a valid format (03XXXXXXXXX)"
+      )
+      .required("Contact Number is required"),
+    cnic: Yup.string()
+      .matches(
+        /[0-9]{5}-[0-9]{7}-[0-9]{1}/,
+        "National Identity Number (CNIC) should be in the format XXXXX-XXXXXXX-X"
+      )
+      .required("National Identity Number (CNIC) is required"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      vendorname: "",
+      contact: "",
+      cnic: "",
+    },
+    validationSchema: step3Schema,
+    onSubmit: (values) => {
+      // Perform any necessary actions with the form values
+      // For example, save the data to a database
+      console.log(values);
+      navigate("/registersellerform4"); // Move to the next step
+    },
+  });
+
+  const handleChange = (e) => {
+    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <div className="RSF3">
+      <RegisterSellerForm image={image}>
+        <h2>Looking forward to know a bit about you!</h2>
+        <p>ID: {id}</p>
+        <p>
+          Hope we aren't bothering you asking a few questions related to you.
+          This will help us contact you and approve your identity.
+        </p>
+        <hr />
+        <form onSubmit={formik.handleSubmit}>
+          <div className="input-form">
+            <label>Name of the Owner:</label>
+            <FormInput
+              type="text"
+              name="vendorname"
+              value={formik.values.vendorname}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.vendorname && formik.errors.vendorname && (
+              <div>{formik.errors.vendorname}</div>
+            )}
+          </div>
+          <div className="input-form">
+            <label>Contact Number:</label>
+            <FormInput
+              type="text"
+              name="contact"
+              value={formik.values.contact}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.contact && formik.errors.contact && (
+              <div>{formik.errors.contact}</div>
+            )}
+          </div>
+          <div className="input-form">
+            <label>National Identity Number (CNIC):</label>
+            <FormInput
+              type="text"
+              name="cnic"
+              value={formik.values.cnic}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.cnic && formik.errors.cnic && (
+              <div>{formik.errors.cnic}</div>
+            )}
+          </div>
+          <div className="form-buttons">
+            <button type="submit">Next</button>
+          </div>
+        </form>
+      </RegisterSellerForm>
+    </div>
+  );
+};
+
+export default RSF3;
